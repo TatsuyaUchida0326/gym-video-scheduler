@@ -1,3 +1,5 @@
+import { IS_DEMO } from '../env';
+
 interface Props {
   onStart: () => void;
 }
@@ -13,6 +15,12 @@ export function LaunchScreen({ onStart }: Props) {
       >
         ▶ 全画面で開始
       </button>
+      {IS_DEMO && (
+        <p className="mt-10 max-w-lg px-6 text-center text-sm leading-relaxed text-gray-400">
+          デモ版です。開始すると CM 素材のスライドショーが流れ、約1分後にサンプル動画が自動再生されます（音が出ます）。
+          右下の「⚙ 設定」から、予約・CM 素材・再生履歴の画面を見られます。
+        </p>
+      )}
     </div>
   );
 }

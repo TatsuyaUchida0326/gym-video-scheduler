@@ -28,3 +28,6 @@ release
 
 # 個人のローカル設定
 .claude/settings.local.json
+
+# デモ版のビルド成果物（GitHub Actions が作って Pages に置く）
+dist-demo

@@ -11,11 +11,10 @@ import { LaunchScreen } from './components/LaunchScreen';
 import { SlideshowScreen } from './components/SlideshowScreen';
 import { PlayerScreen } from './components/PlayerScreen';
 import { SettingsScreen } from './components/settings/SettingsScreen';
+import { IS_ELECTRON } from './env';
 
-// Electron は起動時点で全画面かつ自動再生が許可されているので、
-// 起動画面のクリック待ちを挟まない（再起動後に誰も押さず予約が止まるのを防ぐ）。
+// Electron では起動画面のクリック待ちを挟まない（再起動後に誰も押さず予約が止まるのを防ぐ）。
 // ブラウザ実行時は全画面化と音声付き自動再生にユーザー操作が要るため起動画面を残す
-const IS_ELECTRON = navigator.userAgent.includes('Electron');
 const INITIAL_SCREEN: AppScreen = IS_ELECTRON ? 'slideshow' : 'launch';
 
 // 設定画面を操作せずに放置したらスライドショーへ戻る。

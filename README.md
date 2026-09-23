@@ -3,6 +3,10 @@
 ジムの画面で CM 素材（画像）をスライドショー表示し、決まった曜日・時刻になると登録した動画を自動再生するアプリ。
 会社の Windows PC（ネット接続なし）で、Electron の portable exe として無人運用している。
 
+**デモ版:** https://tatsuyauchida0326.github.io/gym-video-scheduler/
+見本の CM 素材と予約が入った状態で起動し、「全画面で開始」から約1分後にサンプル動画が自動再生される（音が出る）。
+登録した内容は見た人のブラウザの中にだけ保存される。
+
 ## 動き
 
 - **スライドショー:** 登録した画像を一定間隔（5〜300 秒）で切り替える
@@ -40,8 +44,12 @@ npm run dev                # 開発サーバー（http://localhost:5173）
 npm test                   # 予約判定・保存データ・バックアップ形式のテスト（Node 22.18 以降）
 npm run lint
 npm run build              # 型チェック＋ビルド（dist/）
+npm run build:demo         # デモ版のビルド（dist-demo/。見本の素材と予約入り）
+node scripts/gen-demo-assets.mjs  # デモ版の見本素材を作り直す（ffmpeg が必要）
 npm run electron:build:win # Windows 用 portable exe（release/GymVideoScheduler 0.0.0.exe）
 ```
+
+main に push すると GitHub Actions（`.github/workflows/deploy-demo.yml`）がテスト・lint の後にデモ版をビルドし、GitHub Pages に公開する。
 
 会社の PC へは、`release/GymVideoScheduler 0.0.0.exe` を USB などで持ち込み、古い exe と置き換える。データは PC 側に残るので消えない。
 
@@ -54,6 +62,7 @@ src/components/              スライドショー・再生・起動画面
 src/components/settings/     設定画面（予約・CM 素材・再生履歴・設定の各タブ）
 src/hooks/                   状態と保存（usePersistentState が localStorage との同期を担う）
 src/lib/                     画面に依存しない処理（予約判定・保存データの検証・バックアップ）
+src/demo/                    デモ版だけで使う見本データと素材（通常版のビルドには入らない）
 tests/                       src/lib と src/utils のテスト（node:test）
 ```
 
