@@ -1,0 +1,48 @@
+@import "tailwindcss";
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: #000;
+  font-family: system-ui, 'Segoe UI', sans-serif;
+}
+
+#root {
+  width: 100%;
+  height: 100vh;
+}
+
+/* 複数の画面で使う見た目。1か所で直せるようにここにまとめる */
+@layer components {
+  /* 画面右下の半透明ボタン。利用者の目に付きにくく、スタッフは押せる */
+  .btn-overlay {
+    @apply absolute bottom-4 right-4 text-white text-sm px-3 py-2 rounded-lg bg-black/20 hover:bg-black/60 transition-all opacity-20 hover:opacity-100 select-none;
+  }
+
+  .btn-secondary {
+    @apply px-4 py-2 rounded-lg bg-gray-700 hover:bg-gray-600 text-sm text-white transition-colors disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+
+  .btn-danger-sm {
+    @apply text-xs px-2.5 py-1.5 rounded-lg bg-red-900/60 hover:bg-red-800/60 text-red-300 transition-colors;
+  }
+
+  .input-dark {
+    @apply bg-gray-800 border border-gray-700 rounded-lg px-3 py-2 text-white text-sm focus:border-blue-500 focus:outline-none;
+  }
+
+  .form-label {
+    @apply block text-xs font-medium text-gray-400 mb-1.5 uppercase tracking-wide;
+  }
+
+  .section-title {
+    @apply text-base font-semibold text-gray-200 mb-3;
+  }
+
+  .alert-error {
+    @apply text-red-400 text-sm bg-red-900/20 border border-red-800 rounded-lg px-3 py-2;
+  }
+}
